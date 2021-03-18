@@ -35,7 +35,7 @@ public:
 template <typename T>
 std::istream &operator>>(std::istream &is, MatrixT<T> &matrix)
 {
-    std::vector<double> data;
+    std::vector<T> data;
     std::string line;
     std::string tokenEntry;
     int cols = 0;
@@ -179,7 +179,7 @@ MatrixT<T> operator*(const MatrixT<T> &m1, const MatrixT<T> &m2)
     int firstColumns = m1.nr_cols();
     int secondColumns = m2.nr_cols();
 
-    std::vector<double> data;
+    std::vector<T> data;
     MatrixT<T> newMatrix(firstRows, secondColumns);
 
     if (firstColumns != secondRows)
@@ -191,7 +191,7 @@ MatrixT<T> operator*(const MatrixT<T> &m1, const MatrixT<T> &m2)
     {
         for (int y = 0; y < secondColumns; y++)
         {
-            double sum = m1(x, 0) * m2(0, y);
+            T sum = m1(x, 0) * m2(0, y);
             for (int z = 1; z < firstColumns; z++)
             {
                 sum += m1(x, z) * m2(z, y);
