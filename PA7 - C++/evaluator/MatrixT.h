@@ -1,3 +1,10 @@
+/*
+Author: Tim van Ekert (13635565)
+Study: Software Engineering HvA, Pre master SE UvA
+Version: 1
+Description: This program defines a generic matrix. It is supposed to extend the Matrix.h file to change the doubles into generic types.
+*/
+
 #ifndef MATRIXT_INCLUDED
 #define MATRIXT_INCLUDED
 
@@ -102,7 +109,7 @@ MatrixT<T> operator-(const MatrixT<T> &matrix)
     {
         for (int y = 0; y < columns; y++)
         {
-            newMatrix.vec()[y] = matrix.vec()[y] * -1;
+            newMatrix(x, y) = -matrix(x, y);
         }
     }
     return newMatrix; // to be completed
@@ -145,7 +152,7 @@ MatrixT<T> operator+(const MatrixT<T> &m1, const MatrixT<T> &m2)
     {
         for (int y = 0; y < columns; y++)
         {
-            newMatrix.vec()[y] = m1.vec()[y] + m2.vec()[y];
+            newMatrix(x, y) = m1(x, y) + m2(x, y);
         }
     }
     return newMatrix; // to be completed
@@ -164,7 +171,7 @@ MatrixT<T> operator-(const MatrixT<T> &m1, const MatrixT<T> &m2)
     {
         for (int y = 0; y < columns; y++)
         {
-            newMatrix.vec()[y] = m1.vec()[y] - m2.vec()[y];
+            newMatrix(x, y) = m1(x, y) - m2(x, y);
         }
     }
     return newMatrix; // to be completed
