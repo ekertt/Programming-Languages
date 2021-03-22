@@ -21,7 +21,10 @@ public:
         matrix_string = s;
     }
 
-    std::string getString() const { return matrix_string; }
+    std::string getString() const
+    {
+        return matrix_string;
+    }
 
     friend std::istream &operator>>(std::istream &is, Str &string);
 
@@ -49,36 +52,41 @@ std::ostream &operator<<(std::ostream &os, const Str &string)
     return os;
 }
 
+// Helper for the operator functions to print the correct output
+std::string operatorHelper(std::string firstString, std::string operatorType, std::string secondString)
+{
+    if (secondString == "")
+    {
+        return "(" + operatorType + firstString + ")";
+    }
+    else
+    {
+        return "(" + firstString + operatorType + secondString + ")";
+    }
+}
+
 // Returns the addition of the two given Str strings
 Str operator+(const Str &firstString, const Str &secondString)
 {
-    Str newString = "(" + firstString.getString() + "+" + secondString.getString() + ")";
-
-    return newString;
+    return operatorHelper(firstString.getString(), "+", secondString.getString());
 }
 
 // Returns the addition of the two given Str strings
 Str operator*(const Str &firstString, const Str &secondString)
 {
-    Str newString = "(" + firstString.getString() + "*" + secondString.getString() + ")";
-
-    return newString;
+    return operatorHelper(firstString.getString(), "*", secondString.getString());
 }
 
 // Returns the subtraction of the two given Str strings
 Str operator-(const Str &firstString, const Str &secondString)
 {
-    Str newString = "(" + firstString.getString() + "-" + secondString.getString() + ")";
-
-    return newString;
+    return operatorHelper(firstString.getString(), "-", secondString.getString());
 }
 
 // Returns the negation of the given Str string
 Str operator-(const Str &string)
 {
-    Str newString = "(-" + string.getString() + ")";
-
-    return newString;
+    return operatorHelper(string.getString(), "-", "");
 }
 
 #endif
